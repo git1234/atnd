@@ -1,4 +1,5 @@
-class Comment < ActiveRecord::Base
+class AttendUser < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :event
+
 end

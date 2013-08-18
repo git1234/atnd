@@ -1,0 +1,31 @@
+<h1>Listing attend_users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Event</th>
+      <th>Status</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attend_users.each do |attend_user| %>
+      <tr>
+        <td><%= attend_user.user_id %></td>
+        <td><%= attend_user.event_id %></td>
+        <td><%= attend_user.status %></td>
+        <td><%= link_to 'Show', attend_user %></td>
+        <td><%= link_to 'Edit', edit_attend_user_path(attend_user) %></td>
+        <td><%= link_to 'Destroy', attend_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Attend user', new_attend_user_path %>

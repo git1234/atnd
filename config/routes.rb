@@ -1,4 +1,6 @@
 Atnd::Application.routes.draw do
+  resources :attend_users
+
   get "users/edit"
   get "users/update"
   get "users/index"
