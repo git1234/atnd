@@ -42,7 +42,7 @@ class AttendUsersController < ApplicationController
   def update
     respond_to do |format|
       if @attend_user.update(attend_user_params)
-        format.html { redirect_to @attend_user, notice: 'Attend user was successfully updated.' }
+        format.html { redirect_to events_path, notice: 'Attend user was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

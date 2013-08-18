@@ -11,6 +11,8 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @attend_user = AttendUser.new
+    logger.debug("---------#{@event.users}")
   end
 
   # GET /events/new

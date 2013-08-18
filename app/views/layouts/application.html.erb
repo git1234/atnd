@@ -52,6 +52,7 @@
               <li><%= link_to "ユーザー", users_path  %></li>
               <li><%= link_to "イベント", events_path  %></li>
               <li><%= link_to "コメント", comments_path  %></li>
+              <li><%= link_to "", attend_users_path  %></li>
               <% if user_signed_in? %>
               	<li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
               <% end %>
@@ -64,24 +65,13 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
-            </ul>
-          </div><!--/.well -->
+
         </div><!--/span-->
         <div class="span9">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
       </div><!--/row-->
-
-      <footer>
-        <p>&copy; Company 2013</p>
-      </footer>
 
     </div> <!-- /container -->
 

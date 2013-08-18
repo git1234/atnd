@@ -1,5 +1,15 @@
 <p id="notice"><%= notice %></p>
 
+<div class="well sidebar-nav" style="float:right;">
+  <ul class="nav nav-list">
+    <li class="nav-header">参加者</li>
+
+    <% @event.users.each do |attend| %>
+      <li><%= attend.name %></li>
+    <% end %>
+  </ul>
+</div><!--/.well -->
+
 <p>
   <strong>Title:</strong>
   <%= @event.title %>
@@ -27,9 +37,26 @@
 
 <p>
   <strong>User:</strong>
-  <%= @event.user_id %>
+  <%= User.find(@event.user_id).name %>
 </p>
-
-<%= link_to '参加する', events_path %>
+<!-- 
+< link_to '参加する', attend_users_path, name: "attend_user[user_id: current_user.id, event_id: @event.id, status: 1]", method: :post %> -->
+<%= form_for(@attend_user) do |f| %>
+  <div class="field" style="display:none;">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id, value: current_user.id %>
+  </div>
+  <div class="field" style="display:none;">
+    <%= f.label :event_id %><br>
+    <%= f.number_field :event_id, value: @event.id %>
+  </div>
+  <div class="field" style="display:none;">
+    <%= f.label :status %><br>
+    <%= f.number_field :status, value: 1 %>
+  </div>
+  <div class="actions">
+    <%= f.submit "参加する" %>
+  </div>
+<% end %>
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

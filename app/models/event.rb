@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
 	has_many :comments
-	has_many :attene_users
-	has_many :users, through: :attene_users
+	has_many :attend_users
+	has_many :users, through: :attend_users
 	belongs_to :user
 end
