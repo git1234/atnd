@@ -1,9 +1,17 @@
 Atnd::Application.routes.draw do
+  get "users/edit"
+  get "users/update"
+  get "users/index"
   resources :comments
 
   resources :events
 
-  devise_for :users
+  #devise_for :users
+  devise_for :users, :controllers => {
+    :sessions => 'users/sessions',
+    :registrations => 'users/registrations'
+  }
+  resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
