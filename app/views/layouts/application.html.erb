@@ -52,7 +52,7 @@
               <li><%= link_to "ユーザー", users_path  %></li>
               <li><%= link_to "イベント", events_path  %></li>
               <li><%= link_to "コメント", comments_path  %></li>
-              <li><%= link_to "", attend_users_path  %></li>
+              <li><%= link_to "参加状態", attend_users_path  %></li>
               <% if user_signed_in? %>
               	<li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
               <% end %>
