@@ -13,6 +13,7 @@ class EventsController < ApplicationController
   def show
     @attend_user = AttendUser.new
     #logger.debug("---------#{AttendUser.find_by(user_id: attend.id)}")
+    @comment = Comment.new
   end
 
   # GET /events/new
