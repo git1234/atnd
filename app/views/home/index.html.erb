@@ -1,0 +1,7 @@
+<h1>TOP</h1>
+<% if blog_user_signed_in? %>
+<%= link_to "プロフィール作成", new_profile_path, method: :GET %>
+<%= link_to "ログアウト", destroy_blog_user_session_path, method: :delete %>
+<% else %>
+<%= link_to "ログイン", new_blog_user_session_path %>
+<% end %>

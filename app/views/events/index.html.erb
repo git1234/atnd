@@ -1,37 +1,30 @@
-<h1>Listing events</h1>
+<h1>イベント一覧</h1>
+<%= link_to button_tag("新規作成", :class => "btn-custom"), new_event_path %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Date</th>
-      <th>Place</th>
-      <th>Url</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div style="margin-top:30px;" class="row">
+  <div class="span9">
+  <ul class="thumbnails" style="list-style:none">
+     
+      <% @events.each do |event| %> 
+      <li class="span4">
+      <a href="#" class="thumbnail"><%= image_tag("atnd.png") %></a>     
+          <%= event.title %>
+          <%= event.body %>
+          <%= event.date %>
+          <%= event.place %>
+          <%= event.url %>
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.title %></td>
-        <td><%= event.body %></td>
-        <td><%= event.date %></td>
-        <td><%= event.place %></td>
-        <td><%= event.url %></td>
-        <td><%= event.user_id %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+          <%= link_to 'Show', event %>
+          <%= link_to 'Edit', edit_event_path(event) %>
+          <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </li>
+      <% end %>
+    
+  </ul>
+  </div>
+  <div class="span4">
+  </div>
+</div>
 <br>
 
-<%= link_to 'New Event', new_event_path %>
+

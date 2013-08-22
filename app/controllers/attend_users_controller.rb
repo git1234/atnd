@@ -1,5 +1,6 @@
 class AttendUsersController < ApplicationController
   before_action :set_attend_user, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /attend_users
   # GET /attend_users.json

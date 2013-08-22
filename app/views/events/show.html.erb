@@ -5,13 +5,9 @@
     <li class="nav-header">参加者</li>
 
     <% @event.users.each do |attend| %>
-      <% if AttendUser.find_by(user_id: current_user.id, event_id: @event.id).status == 1 %>
       <li><%= attend.name %></li>
-  <!--     < logger.debug("AttendUser---------#{@event.attend_users.inspect.first.comment}") %> -->
       <%= AttendUser.find_by(user_id: attend.id, event_id: @event.id).comment %>
       <hr>
-<!--       <li>< AttendUser.find_by(user_id: attend.id).comment %></li> -->
-      <% end %>
     <% end %>
   </ul>
 </div><!--/.well -->
