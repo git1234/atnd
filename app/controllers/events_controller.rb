@@ -12,7 +12,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @attend_user = AttendUser.new
-    logger.debug("---------#{@event.users}")
+    #logger.debug("---------#{AttendUser.find_by(user_id: attend.id)}")
   end
 
   # GET /events/new

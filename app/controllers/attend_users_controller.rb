@@ -15,10 +15,13 @@ class AttendUsersController < ApplicationController
   # GET /attend_users/new
   def new
     @attend_user = AttendUser.new
+    @event_id = params[:event_id]
+    logger.debug("----------#{@event_id}")
   end
 
   # GET /attend_users/1/edit
   def edit
+    @event_id = params[:event_id]
   end
 
   # POST /attend_users
@@ -28,7 +31,7 @@ class AttendUsersController < ApplicationController
 
     respond_to do |format|
       if @attend_user.save
-        format.html { redirect_to @attend_user, notice: 'Attend user was successfully created.' }
+        format.html { redirect_to events_path, notice: 'Attend user was successfully created.' }
         format.json { render action: 'show', status: :created, location: @attend_user }
       else
         format.html { render action: 'new' }
@@ -69,6 +72,6 @@ class AttendUsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def attend_user_params
-      params.require(:attend_user).permit(:user_id, :event_id, :status)
+      params.require(:attend_user).permit(:user_id, :event_id, :status, :comment)
     end
 end

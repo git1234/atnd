@@ -5,7 +5,13 @@
     <li class="nav-header">参加者</li>
 
     <% @event.users.each do |attend| %>
+      <% if AttendUser.find_by(user_id: current_user.id, event_id: @event.id).status == 1 %>
       <li><%= attend.name %></li>
+  <!--     < logger.debug("AttendUser---------#{@event.attend_users.inspect.first.comment}") %> -->
+      <%= AttendUser.find_by(user_id: attend.id, event_id: @event.id).comment %>
+      <hr>
+<!--       <li>< AttendUser.find_by(user_id: attend.id).comment %></li> -->
+      <% end %>
     <% end %>
   </ul>
 </div><!--/.well -->
@@ -51,19 +57,33 @@
   </div>
   <div class="field" style="display:none;">
     <%= f.label :status %><br>
-    <% if AttendUser.find_by(user_id: current_user.id, event_id: @event.id).status == 1 %>
+    <% if AttendUser.find_by(user_id: current_user.id, event_id: @event.id)  %>
      <%= f.number_field :status, value: 0 %>
     <% else %>
       <%= f.number_field :status, value: 1 %>
     <% end %>
   </div>
   <div class="actions">
-  <% if AttendUser.find_by(user_id: current_user.id, event_id: @event.id).status == 1 %>
-    <%= f.submit "キャンセル" %>
-  <% else %>
-    <%= f.submit "参加する" %>
-  <% end %>
+<!--   < if AttendUser.find_by(user_id: current_user.id, event_id: @event.id).status == 1 %>
+    < f.submit "キャンセル" %>
+  < else %>
+    < f.submit "参加する" %>
+  < end %> -->
+
+<!--   < if !AttendUser.find_by(user_id: current_user.id, event_id: @event.id) %>
+    < f.submit "参加" %>
+  < else %>
+    < f.submit "キャンセル " %>
+  < end %> -->
   </div>
 <% end %>
-<%= link_to 'Edit', edit_event_path(@event) %> |
+<% if @event.user_id == current_user.id %>
+<%= link_to 'Edit', edit_event_path(@event) %> 
+<% end %>
 <%= link_to 'Back', events_path %>
+<!--  < link_to '参加する', new_attend_user_path(event_id: @event.id) %>  -->
+<% if AttendUser.find_by(user_id: current_user.id, event_id: @event.id) %>
+  <%= link_to 'キャンセル', edit_attend_user_path(AttendUser.find_by(user_id: current_user.id, event_id: @event.id).id, event_id: @event.id), method: :get %>
+<% else %>
+  <%= link_to '参加する', new_attend_user_path(event_id: @event.id) %>
+<% end %>
