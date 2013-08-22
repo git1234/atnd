@@ -1,5 +1,5 @@
 <h1>イベント一覧</h1>
-<%= link_to button_tag("新規作成", :class => "btn-custom"), new_event_path %>
+<%= link_to button_tag("新規作成", :class => "btn btn-danger"), new_event_path %>
 
 
 <div style="margin-top:30px;" class="row">
@@ -11,14 +11,16 @@
       <a href="#" class="thumbnail"><%= image_tag("atnd.png") %></a>    
         <div class="caption"> 
           <h5><%= event.title %></h5>
-          <p><%= event.body %></p>
+          <p><%= truncate(event.body, length: 18) %></p>
           <p><%= event.date %></p>
           <p><%= event.place %></p>
           <p><%= event.url %></p>
 
           <p><%= link_to button_tag("Show", :class => "btn"), event %>
+          <% if event.user_id == current_user.id %>
           <%= link_to button_tag("Edit", :class => "btn"), edit_event_path(event) %>
           <%= link_to button_tag("Delete", :class => "btn"), event, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+          <% end %>
         </div>
       </li>
       <% end %>

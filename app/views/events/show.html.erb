@@ -1,7 +1,7 @@
-<p id="notice"><%= notice %></p>
 
-<div class="well sidebar-nav" style="float:right;">
-  <ul class="nav nav-list">
+
+<div class="well sidebar-nav container" style="float:right; width:200px;">
+  <ul class="nav nav-list width:240px;">
     <li class="nav-header">参加者</li>
 
     <% @event.users.each do |attend| %>
@@ -12,15 +12,12 @@
   </ul>
 </div><!--/.well -->
 
+<div class="span8">
 <p>
-  <strong>Title:</strong>
-  <%= @event.title %>
+  <h2><%= @event.title %></h2>
+  
 </p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @event.body %>
-</p>
+<hr>
 
 <p>
   <strong>Date:</strong>
@@ -28,7 +25,7 @@
 </p>
 
 <p>
-  <strong>Place:</strong>
+  <strong>場所</strong>
   <%= @event.place %>
 </p>
 
@@ -38,9 +35,14 @@
 </p>
 
 <p>
-  <strong>User:</strong>
+  <strong>管理者:</strong>
   <%= User.find(@event.user_id).name %>
 </p>
+<hr>
+<p>
+  <%= @event.body %>
+</p>
+<div>
 
 <%= form_for @attend_user, url: attend_user_path(current_user.id), method: :patch do |f| %>
   <div class="field" style="display:none;">
@@ -60,26 +62,16 @@
     <% end %>
   </div>
   <div class="actions">
-<!--   < if AttendUser.find_by(user_id: current_user.id, event_id: @event.id).status == 1 %>
-    < f.submit "キャンセル" %>
-  < else %>
-    < f.submit "参加する" %>
-  < end %> -->
 
-<!--   < if !AttendUser.find_by(user_id: current_user.id, event_id: @event.id) %>
-    < f.submit "参加" %>
-  < else %>
-    < f.submit "キャンセル " %>
-  < end %> -->
   </div>
 <% end %>
 <% if @event.user_id == current_user.id %>
-<%= link_to 'Edit', edit_event_path(@event) %> 
+<%= link_to button_tag("編集", :class => "btn"), edit_event_path(@event) %> 
 <% end %>
-<%= link_to 'Back', events_path %>
+<%= link_to button_tag("戻る", :class => "btn"), events_path %>
 <!--  < link_to '参加する', new_attend_user_path(event_id: @event.id) %>  -->
 <% if AttendUser.find_by(user_id: current_user.id, event_id: @event.id) %>
-  <%= link_to 'キャンセル', edit_attend_user_path(AttendUser.find_by(user_id: current_user.id, event_id: @event.id).id, event_id: @event.id), method: :get %>
+  <%= link_to button_tag("キャンセル", :class => "btn-danger"), edit_attend_user_path(AttendUser.find_by(user_id: current_user.id, event_id: @event.id).id, event_id: @event.id), method: :get %>
 <% else %>
-  <%= link_to '参加する', new_attend_user_path(event_id: @event.id) %>
+  <%= link_to button_tag("参加", :class => "btn-danger"), new_attend_user_path(event_id: @event.id) %>
 <% end %>
