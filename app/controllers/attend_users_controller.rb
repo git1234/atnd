@@ -32,7 +32,7 @@ class AttendUsersController < ApplicationController
 
     respond_to do |format|
       if @attend_user.save
-        format.html { redirect_to events_path, notice: 'Attend user was successfully created.' }
+        format.html { redirect_to event_path(attend_user_params[:event_id]), notice: 'Attend user was successfully created.' }
         format.json { render action: 'show', status: :created, location: @attend_user }
       else
         format.html { render action: 'new' }
@@ -46,7 +46,7 @@ class AttendUsersController < ApplicationController
   def update
     respond_to do |format|
       if @attend_user.update(attend_user_params)
-        format.html { redirect_to events_path, notice: 'Attend user was successfully updated.' }
+        format.html { redirect_to event_path(attend_user_params[:event_id]), notice: 'Attend user was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
